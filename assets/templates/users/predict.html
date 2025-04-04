@@ -1,0 +1,127 @@
+{% extends 'users/userbase.html' %}
+
+{% block contents %}
+<style>
+/* General form styling */
+form {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 30px auto;
+    font-family: Arial, sans-serif;
+}
+
+/* Label styling */
+label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: inline-block;
+    font-size: 16px;
+}
+
+/* Select input styling */
+select, input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Button styling */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Focus effect on inputs */
+select:focus, input[type="number"]:focus {
+    outline: none;
+    border-color: #4CAF50;
+    background-color: #e8f5e9;
+}
+
+/* Spacing between form elements */
+form label, form select, form input[type="number"] {
+    margin-bottom: 15px;
+}
+.result{
+    text-align: center;
+    padding-top: 10px;
+}
+</style>
+
+<body>
+    <div class="result">
+        <h2> The student may get : {{result}} </h2>
+    </div>
+    <h2 style="text-align: center;">Enter Student Details:</h2>
+    <form method="post">
+        {% csrf_token %}
+        
+        <label for="TypeEtab">Type of Institution:</label>
+        <select name="TypeEtab" id="TypeEtab">
+            <option value="0">Public</option>
+            <option value="1">Private</option>
+        </select>
+
+        <label for="Genre">Gender:</label>
+        <select name="Genre" id="Genre">
+            <option value="0">Female</option>
+            <option value="1">Male</option>
+        </select>
+
+        <label for="Niveau">Education Level:</label>
+        <select name="Niveau" id="Niveau">
+            <option value="1">Primary</option>
+            <option value="2">Secondary</option>
+            <option value="3">Tertiary</option>
+        </select>
+
+        <label for="RetardSco">Academic Delay:</label>
+        <select name="RetardSco" id="RetardSco">
+            <option value="0">None</option>
+            <option value="1">1 year</option>
+            <option value="2">2 years</option>
+        </select>
+
+        <label for="Provenance">Residence:</label>
+        <select name="Provenance" id="Provenance">
+            <option value="1">Rural</option>
+            <option value="2">Suburban</option>
+            <option value="3">Urban</option>
+        </select>
+
+        <label for="Fee_reimbursement">Fee Reimbursement:</label>
+        <select name="Fee_reimbursement" id="Fee_reimbursement">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <label for="Moy">Average Score (Moy):</label>
+        <input type="number" name="Moy" id="Moy" step="0.01" required>
+
+        <button type="submit">Predict</button>
+    </form>
+</body>
+
+{% endblock %}
